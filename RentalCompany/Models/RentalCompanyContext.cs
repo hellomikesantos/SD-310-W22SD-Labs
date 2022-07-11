@@ -16,7 +16,7 @@ namespace RentalCompany.Models
         {
         }
 
-        public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<Customer> Customers { get; set; } = null!; 
         public virtual DbSet<Equipment> Equipment { get; set; } = null!;
         public virtual DbSet<Rental> Rentals { get; set; } = null!;
 

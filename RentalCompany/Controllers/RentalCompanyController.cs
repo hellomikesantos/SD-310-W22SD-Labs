@@ -34,29 +34,36 @@ namespace RentalCompany.Controllers
             return View();
         }
 
-        public IActionResult Equipments()
+        public IActionResult Equipments(string customerUsername)
         {
+            IEnumerable<Equipment> equipments = db.Equipment.ToList();
+            foreach (Customer customer in db.Customers)
+            {
+                if (customer.UserName == customerUsername)
+                {
+                    Rental rental = new Rental();
+                    rental.IsCurrent = true;
+                    rental.CustomerUserName = customerUsername;
+                    //return RedirectToAction("Rent", new { customerUsername = customerUsername});
+                }
+            }
             return View(db.Equipment.ToList());
         }
+
         public IActionResult AllRentals()
         {
             List<Rental> allRentals = db.Rentals.ToList();
             return View(allRentals);
         }
 
-        public IActionResult Rent(string? equipment, int? customerId)
+        public IActionResult RentSuccess(int equipmentId)
         {
-            if (equipment == null && customerId == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                Rental rental = new Rental();
-                rental.IsCurrent = true;
-            }
-            return View();
-        }
 
+            Rental rental = new Rental();
+            rental.IsCurrent = true;
+            //rental.CustomerUserName = customerUsername;
+            rental.EquipmentId = equipmentId;
+            return View(rental);
+        }
     }
 }

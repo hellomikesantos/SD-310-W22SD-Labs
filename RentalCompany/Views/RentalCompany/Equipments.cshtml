@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Stock)
             </td>
             <td>
-                <button><a asp-action="Rent" asp-route-id="@item.Id">Rent</a></button>
+                <a asp-action="RentSuccess" asp-route-equipmentId="@item.Id">Rent</a> |
             </td>
         </tr>
 }
