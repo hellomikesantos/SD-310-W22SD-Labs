@@ -9,5 +9,8 @@ namespace RentalCompany.Models
         public int? RentalHours { get; set; }
         public DateTime? Date { get; set; }
         public bool? IsCurrent { get; set; }
-    }
+        public string CustomerUserName { get; set; } = null!;
+        public int EquipmentId { get; set; }
+    }   
 }
+        

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentalCompany.Models;
 
@@ -11,9 +12,10 @@ using RentalCompany.Models;
 namespace RentalCompany.Migrations
 {
     [DbContext(typeof(RentalCompanyContext))]
-    partial class RentalCompanyContextModelSnapshot : ModelSnapshot
+    [Migration("20220710231550_AddCustomerAndEquipment")]
+    partial class AddCustomerAndEquipment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +61,7 @@ namespace RentalCompany.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Equipment", (string)null);
+                    b.ToTable("Equipment");
                 });
 
             modelBuilder.Entity("RentalCompany.Models.Rental", b =>

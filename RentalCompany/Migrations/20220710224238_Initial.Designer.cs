@@ -12,8 +12,8 @@ using RentalCompany.Models;
 namespace RentalCompany.Migrations
 {
     [DbContext(typeof(RentalCompanyContext))]
-    [Migration("20220710173229_UpdateDB")]
-    partial class UpdateDB
+    [Migration("20220710224238_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,14 +77,8 @@ namespace RentalCompany.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime");
-
-                    b.Property<int>("EquipmentId")
-                        .HasColumnType("int");
 
                     b.Property<bool?>("IsCurrent")
                         .HasColumnType("bit");
@@ -94,10 +88,6 @@ namespace RentalCompany.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("EquipmentId");
-
                     b.ToTable("Rental", (string)null);
                 });
 
@@ -106,25 +96,6 @@ namespace RentalCompany.Migrations
                     b.HasOne("RentalCompany.Models.Customer", null)
                         .WithMany("EquipmentsRented")
                         .HasForeignKey("CustomerId");
-                });
-
-            modelBuilder.Entity("RentalCompany.Models.Rental", b =>
-                {
-                    b.HasOne("RentalCompany.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RentalCompany.Models.Equipment", "Equipment")
-                        .WithMany()
-                        .HasForeignKey("EquipmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Equipment");
                 });
 
             modelBuilder.Entity("RentalCompany.Models.Customer", b =>

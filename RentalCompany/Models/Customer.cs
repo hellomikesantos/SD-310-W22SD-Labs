@@ -8,7 +8,6 @@ namespace RentalCompany.Models
         public int Id { get; set; }
         public string? UserName { get; set; }
         public int? RentalHours { get; set; }
-        public List<Equipment> EquipmentsRented { get; set; } = new List<Equipment>();
 
     }
 }
